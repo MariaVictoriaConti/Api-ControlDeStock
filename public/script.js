@@ -1,0 +1,1 @@
+//Script del front que hace fetchs con el backend
