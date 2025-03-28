@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Amatic SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  nav {
+    width: 100%;
+    display: none;
+  }
+  nav div.container-fluid a.navbar-brand img {
+    height: 80px;
+  }
+  
+  .navbar-collapse {
+    z-index: 1;
+    background-color: black;
+    position: absolute;
+    top: 80px;
+    right: 13px;
+  }
+  .navbar-collapse ul {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    list-style: none;
+    align-items: flex-end;
+  }
+  .navbar-collapse ul li {
+    padding: 10px;
+  }
+  .navbar-collapse ul li:hover {
+    text-shadow: rgb(204, 201, 201) -1px -1px;
+  }
+  .navbar-collapse ul li a {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bolder;
+    color: #ffffff !important;
+    font-size: auto;
+    letter-spacing: 2px;
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .nav {
+      display: none !important;
+    }
+  }
+  @media only screen and (min-width: 480px) {
+    .nav {
+      display: none !important;
+    }
+  }
+  @media only screen and (min-width: 700px) {
+    .nav {
+      display: block !important;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .navbar-collapse {
+      background-color: black;
+      position: static;
+    }
+  }
+  .index {
+    display: grid;
+    width: 100%;
+  }
+  
+  .imgCafe-icon {
+      background-image: url("./img/sahumerios.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 150px;
+    line-height: 150px;
+    border: 10px solid black;
+    transition: all 1s;
+  }
+  .imgCafe-icon:hover {
+    transform: scale(1);
+  }
+  .imgCafe-icon:active {
+    transform: scale(1.1);
+  }
+  .imgCafe-icon a {
+    display: block;
+    text-decoration: none;
+    color: rgb(241, 57, 119);
+    font-size: 80px;
+    font-weight: bold;
+  }
+
+  .imgCafe-icon a:hover {
+    text-shadow: 0 0 10px rgb(245, 244, 244);
+  }
+  
+  .imgRodadas-icon {
+    background-image: url("./img/sahumerios.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 150px;
+    line-height: 150px;
+    border: 10px solid black;
+    transition: all 1s;
+  }
+  .imgRodadas-icon:hover {
+    transform: scale(1);
+  }
+  .imgRodadas-icon:active {
+    transform: scale(1.1);
+  }
+  .imgRodadas-icon a {
+    text-decoration: none;
+    color: rgb(241, 57, 119);
+    font-size: 100px;
+    font-weight: bold;
+  }
+  .imgRodadas-icon a:hover {
+    text-shadow: 0 0 10px rgb(245, 244, 244);
+  }
+  
+  .imgTaller-icon {
+    background-image: url("./img/sahumerios.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 150px;
+    line-height: 150px;
+    border: 10px solid black;
+    transition: all 1s;
+  }
+  .imgTaller-icon:hover {
+    transform: scale(1);
+  }
+  .imgTaller-icon:active {
+    transform: scale(1.1);
+  }
+  .imgTaller-icon a {
+    text-decoration: none;
+    color: rgb(241, 57, 119);
+    font-size: 100px;;
+    font-weight: bold;
+  }
+  .imgTaller-icon a:hover {
+    text-shadow: 0 0 10px rgb(245, 244, 244);
+  }
+  
+  .imgTienda-icon {
+    background-image: url("./img/sahumerios.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 150px;
+    line-height: 150px;
+    border: 10px solid black;
+    transition: all 1s;
+  }
+  .imgTienda-icon:hover {
+    transform: scale(1);
+  }
+  .imgTienda-icon:active {
+    transform: scale(1.1);
+  }
+  .imgTienda-icon a {
+    text-decoration: none;
+    color: rgb(241, 57, 119);
+    font-size: 100px;
+    font-weight: bold;
+  }
+  .imgTienda-icon a:hover {
+    text-shadow: 0 0 10px rgb(245, 244, 244);
+  }
+  
+  @media only screen and (min-width: 480px) {
+    .index div {
+      height: 300px;
+      width: auto;
+      line-height: 300px !important;
+    }
+  }
+  @media only screen and (min-width: 700px) {
+    .index {
+      background-color: black;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .index div {
+      width: 45%;
+    }
+    .index div:hover {
+      transform: scale(1.01);
+    }
+  }
+  footer {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+  }
+  footer h5 {
+    padding: 5px 2px;
+    margin-left: 5px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bolder;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .redesSociales {
+    display: block;
+    text-align: center;
+    line-height: 70px;
+  }
+  .redesSociales a {
+    font-size: 20px;
+    color: #ffffff;
+    padding: 3px;
+  }
+  .redesSociales a:hover {
+    text-shadow: 5px 5px 10px #ffffff, -5px -5px 10px #ffffff;
+  }
+  
+  .conocenos {
+    width: 20%;
+    background-image: url(./img/loto.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 10px;
+    color: #ffffff !important;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin-top: 10px;
+  }
+  
+  @media only screen and (min-width: 480px) {
+    footer h5 {
+      font-size: 16px;
+    }
+    .redesSociales a {
+      padding: 15px;
+    }
+    .conocenos {
+      font-size: 15px;
+    }
+  }
+  @media only screen and (min-width: 700px) {
+    .redesSociales a {
+      font-size: 30px;
+      padding: 20px;
+    }
+    .conocenos {
+      font-size: 20px;
+    }
+  }
