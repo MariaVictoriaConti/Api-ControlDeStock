@@ -183,7 +183,7 @@
     .index div {
       height: 300px;
       width: auto;
-      line-height: 300px !important;
+      /* line-height: 300px !important; */
     }
   }
   @media only screen and (min-width: 700px) {
@@ -264,4 +264,15 @@
     .conocenos {
       font-size: 20px;
     }
+  }
+
+  .form{
+    width: 70%;
+
+  }
+
+  .form-floating{
+    margin-top: 10px;
+    width: 100% !important;
+    height: 50px;
   }
