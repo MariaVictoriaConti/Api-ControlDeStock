@@ -2,6 +2,16 @@
 
 const Product = require('../Models/productModel')
 
+//Funcion para obtener todos los productos
+const getAllProducts = async (req, res) => {
+    try {
+        const products = await Product.find()
+        res.json(products)
+    } catch (error) {
+        console.error('No se pudo obtener todos los productos.', error)
+    }
+}
+
 // Funcion para agregar un producto
 const addProduct = async (req, res) => {
     try {
@@ -13,4 +23,4 @@ const addProduct = async (req, res) => {
     }
 }
 
-module.exports = {addProduct}
+module.exports = {addProduct, getAllProducts}
