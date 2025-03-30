@@ -12,6 +12,17 @@ const getAllProducts = async (req, res) => {
     }
 }
 
+//Funcion para obtener un producto por ID - FALTA
+const getProductById = async (req, res) => {
+    try {
+        const productId = req.params.id;
+        const product = await Product.findById(productId)
+        res.json(product)
+     } catch (error) {
+         console.error('No se pudo obtener el producto por ID.', error)
+     }
+}
+
 // Funcion para agregar un producto
 const addProduct = async (req, res) => {
     try {
@@ -23,4 +34,10 @@ const addProduct = async (req, res) => {
     }
 }
 
-module.exports = {addProduct, getAllProducts}
+//Funcion para actualizar un producto por ID - FALTA
+
+//Funcion para eliminar un producto por ID - FALTA
+
+
+
+module.exports = {addProduct, getAllProducts, getProductById}
