@@ -1,3 +1,2 @@
-//Aca tenemos que ir agregando todos los archivos que queremos que sean ocultos por ej el node_modules y el .env
 .env
 node_modules
