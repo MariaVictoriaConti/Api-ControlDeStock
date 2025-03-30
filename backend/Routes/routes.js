@@ -1,20 +1,20 @@
 //Aca van todas las rutas tanto de users como de products, tambien se puede hacer un archivo por cada entidad pero no es necesario, ver que prefiere la mayoria
 
 const express = require('express');
-const { addProduct, getAllProducts, getProductById } = require('../Controllers/productController')
+const { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById } = require('../Controllers/productController')
+const { registerUser } = require('../Controllers/userController')
 const router = express.Router()
 
-
+// Rutas de productos
 router.get('/', getAllProducts) //Aca deberiamos hacer endpoint mas especificos: /getAllProducts, /getProductById, /addProduct etc
 router.get('/:id', getProductById)
 router.post('/', addProduct)
+router.put('/:id', updateProductById)
+router.delete('/:id', deleteProductById)
 
-// router.post('/', async (req, res) => {
-//     try {
-//         await addProduct;
-//     } catch (error) {
-//         res.status(500).json({ message: 'Error al agregar el producto', error: error.message });
-//     }
-// });
+// Rutas de usuarios
+router.post('/register', registerUser)
 
 module.exports = router;
+
+// FALTAN: autenticacion (middleware)

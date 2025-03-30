@@ -12,7 +12,7 @@ connectDB() // aca establecemos conexion
 const app = express()
 app.use(express.json())
 
-app.use('/products', routes);
+app.use('/', routes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Servidor corriendo en: http://localhost:${process.env.PORT}`);
