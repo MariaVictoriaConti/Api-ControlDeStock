@@ -29,4 +29,23 @@ const registerUser = async (req, res) => {
     }
 }
 
-module.exports = { registerUser }
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body
+        const user = await User.findOne({'email': email})
+        if (!user) {
+            console.log('Usuario no encontrado.');
+            return res.status(404).json({message: 'Usuario no registrado.'});
+        }
+        const userPassword = await bcrypt.compare(password, user.password)
+        if (!userPassword) {
+            console.log('Contraseña incorrecta');
+            return res.status(400).json({ message: "Contraseña incorrecta" });
+        }
+        res.status(200).json({ message: "Login exitoso" });
+    } catch (error) {
+        console.error('Ocurrio un error al iniciar sesion.', error)
+    }
+}
+
+module.exports = { registerUser, loginUser }
