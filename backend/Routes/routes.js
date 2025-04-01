@@ -3,6 +3,7 @@
 const express = require('express');
 const { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById } = require('../Controllers/productController')
 const { registerUser, loginUser } = require('../Controllers/userController')
+const { loginLimiter } = require('../Middlewares/loginLimiter')
 const router = express.Router()
 
 // Rutas de productos
@@ -14,7 +15,7 @@ router.delete('/:id', deleteProductById)
 
 // Rutas de usuarios
 router.post('/register', registerUser)
-router.post('/login', loginUser)
+router.post('/login', loginLimiter, loginUser)
 
 module.exports = router;
 
