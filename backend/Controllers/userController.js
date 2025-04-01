@@ -4,7 +4,7 @@ const User = require('../Models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const secretKey = process.env.SECRET_KEY || secretKey123
+const secretKey = process.env.SECRET_KEY || "secretKey123"
 
 const registerUser = async (req, res) => {
     try {
@@ -29,6 +29,25 @@ const registerUser = async (req, res) => {
     }
 }
 
+// const loginUser = async (req, res) => {
+//     try {
+//         const { email, password } = req.body
+//         const user = await User.findOne({'email': email})
+//         if (!user) {
+//             console.log('Usuario no encontrado.');
+//             return res.status(404).json({message: 'Usuario no registrado.'});
+//         }
+//         const userPassword = await bcrypt.compare(password, user.password)
+//         if (!userPassword) {
+//             console.log('Contraseña incorrecta');
+//             return res.status(400).json({ message: "Contraseña incorrecta" });
+//         }
+//         res.status(200).json({ message: "Login exitoso" });
+//     } catch (error) {
+//         console.error('Ocurrio un error al iniciar sesion.', error)
+//     }
+// }
+
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -37,12 +56,18 @@ const loginUser = async (req, res) => {
             console.log('Usuario no encontrado.');
             return res.status(404).json({message: 'Usuario no registrado.'});
         }
-        const userPassword = await bcrypt.compare(password, user.password)
+        const userPassword = await bcrypt.compare(password, user.password) //Aca le pondria isPasswordValid pq lo q hacer es validar si la contraseña es correcta comparando
         if (!userPassword) {
             console.log('Contraseña incorrecta');
             return res.status(400).json({ message: "Contraseña incorrecta" });
         }
-        res.status(200).json({ message: "Login exitoso" });
+//Generar token
+const token = jwt.sign({ email: email }, secretKey, {expiresIn: '1h'})
+if(!token){
+    console.log('Error al generar el token')
+    return res.status(500).json({message: 'Error al generar el token'})
+}
+       return res.status(200).json({ message: "Login exitoso", token: token });
     } catch (error) {
         console.error('Ocurrio un error al iniciar sesion.', error)
     }
