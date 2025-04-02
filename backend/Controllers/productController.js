@@ -55,7 +55,20 @@ const deleteProductById  = async (req, res) => {
     }
 }
 
+//Funcion para obtener un producto por categoría - FUNCIONA
+const getProductsByCategory = async (req, res) => {
+    try {
+        const category = req.params.name;
+        const products = await Product.find({name: category});
+        if (products.length === 0) {
+            return res.json({message:'No hay productos en esta categoría'});
+        }
+        res.json(products);
+    } catch (error) {
+        console.error('Error al obtener productos pr categoría:', error);
+        res.status(500).json({message: 'Error del servidor'});
+    }
+};
 
-module.exports = { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById }
 
-// FALTAN: buscar producto por categoria, ver la logica 
+module.exports = { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById, getProductsByCategory }
