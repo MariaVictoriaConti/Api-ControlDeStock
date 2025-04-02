@@ -2,7 +2,7 @@
 
 const express = require('express');
 const { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById } = require('../Controllers/productController')
-const { registerUser, loginUser } = require('../Controllers/userController')
+const { registerUser, loginUser, getAllUsers, getUserById, deleteUserById, updateUser } = require('../Controllers/userController')
 const { loginLimiter } = require('../Middlewares/loginLimiter')
 const router = express.Router()
 
@@ -16,6 +16,10 @@ router.delete('/:id', deleteProductById)
 // Rutas de usuarios
 router.post('/register', registerUser)
 router.post('/login', loginLimiter, loginUser)
+router.get('/users/getAll', getAllUsers)
+router.get('/users/:id', getUserById)
+router.put('/update/:id', updateUser)
+router.delete('/users/:id', deleteUserById)
 
 module.exports = router;
 

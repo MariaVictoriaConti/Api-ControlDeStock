@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secretKey = process.env.SECRET_KEY || "secretKey123"
 
+// Funcion para registrar un nuevo usuario
 const registerUser = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -29,25 +30,7 @@ const registerUser = async (req, res) => {
     }
 }
 
-// const loginUser = async (req, res) => {
-//     try {
-//         const { email, password } = req.body
-//         const user = await User.findOne({'email': email})
-//         if (!user) {
-//             console.log('Usuario no encontrado.');
-//             return res.status(404).json({message: 'Usuario no registrado.'});
-//         }
-//         const userPassword = await bcrypt.compare(password, user.password)
-//         if (!userPassword) {
-//             console.log('Contraseña incorrecta');
-//             return res.status(400).json({ message: "Contraseña incorrecta" });
-//         }
-//         res.status(200).json({ message: "Login exitoso" });
-//     } catch (error) {
-//         console.error('Ocurrio un error al iniciar sesion.', error)
-//     }
-// }
-
+// Funcion para logeo de un usuario ya registrado
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -56,21 +39,70 @@ const loginUser = async (req, res) => {
             console.log('Usuario no encontrado.');
             return res.status(404).json({message: 'Usuario no registrado.'});
         }
-        const userPassword = await bcrypt.compare(password, user.password) //Aca le pondria isPasswordValid pq lo q hacer es validar si la contraseña es correcta comparando
-        if (!userPassword) {
+        const isPasswordValid = await bcrypt.compare(password, user.password)
+        if (!isPasswordValid) {
             console.log('Contraseña incorrecta');
             return res.status(400).json({ message: "Contraseña incorrecta" });
         }
-//Generar token
-const token = jwt.sign({ email: email }, secretKey, {expiresIn: '1h'})
-if(!token){
-    console.log('Error al generar el token')
-    return res.status(500).json({message: 'Error al generar el token'})
-}
-       return res.status(200).json({ message: "Login exitoso", token: token });
+        //Generar token
+        const token = jwt.sign({ email: email }, secretKey, {expiresIn: '1h'})
+        if(!token){
+            console.log('Error al generar el token')
+            return res.status(500).json({message: 'Error al generar el token'})
+        }
+        return res.status(200).json({ message: "Login exitoso", token: token });
     } catch (error) {
         console.error('Ocurrio un error al iniciar sesion.', error)
     }
 }
 
-module.exports = { registerUser, loginUser }
+// Funcion para obtener todos los usuarios - REVISAR
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+        res.json(users)
+    } catch (error) {
+        console.error('No se pudo obtener la lista de usuarios.', error)
+    }
+}
+
+// Funcion para obtener un usuario por su id - FUNCIONA
+const getUserById = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const user = await User.findById(userId)
+        res.json(user)
+    } catch (error) {
+        console.error('No se pudo encontrar al usuario.', error)
+    }
+}
+
+//Funcion para eliminar un usuario por ID 
+const deleteUserById  = async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        res.json({message: 'Usuario eliminado'})
+    } catch (error) {
+        console.error('Error al eliminar el Usuario.')
+    }
+}
+
+
+
+// Funcion para editar info de un usuario
+// REVISAR - Si se pone en el cuerpo para cambiar la contraseña la va a editar tambien pero sin hash. 
+const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params
+        const newData = req.body
+        if (!id || !newData) {
+            return res.status(400).json({message: 'Error en la información enviada.'})
+        }
+        const update = await User.findByIdAndUpdate(id, newData)
+        res.status(200).json({message: 'Usuario actualizado con éxito.'})
+    } catch (error) {
+        console.error('Ocurrio un error al guardar los cambios. Intente nuevamente.', error)
+    }
+}
+
+module.exports = { registerUser, loginUser, getAllUsers, getUserById, deleteUserById, updateUser }
