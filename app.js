@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path')
 const routes = require('./backend/Routes/routes');
-const endpointLimiter = require('./backend/Middlewares/endpointLimiter')
+
 
 
 // Concetamos a la base de datos
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     res.sendFile(path.join(__dirname, './public/index.html'))
 // })
 
-//app.use(endpointLimiter);
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Servidor corriendo en: http://localhost:${process.env.PORT}`);
