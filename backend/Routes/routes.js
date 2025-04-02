@@ -7,7 +7,7 @@ const { loginLimiter } = require('../Middlewares/loginLimiter')
 const router = express.Router()
 
 // Rutas de productos
-router.get('/', getAllProducts) //Aca deberiamos hacer endpoint mas especificos: /getAllProducts, /getProductById, /addProduct etc
+router.get('/allProducts', getAllProducts) //Aca deberiamos hacer endpoint mas especificos: /getAllProducts, /getProductById, /addProduct etc
 router.get('/:id', getProductById)
 router.post('/', addProduct)
 router.put('/:id', updateProductById)
