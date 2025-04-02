@@ -77,6 +77,16 @@
 <!-- Boton para ver buscar producto por ID-->
 <div class="btts"><button class="bttBuscarById" id="buscarById">Buscar producto por ID</button></div> 
 
+<!-- Boton para ver agregar/add producto por ID - Solo visible para usuarios con permiso -->
+<div class="btts"><button class="bttBuscarById" id="addById" style="display: none;">Agregar producto</button></div> 
+
+<!-- Boton para ver actualizar/update producto por ID - Solo visible para usuarios con permiso-->
+<div class="btts"><button class="bttBuscarById" id="updateById" style="display: none;">Actualizar producto por ID</button></div> 
+
+<!-- Boton para eliminar/delete producto por ID - Solo visible para usuarios con permiso -->
+<div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por ID</button></div> 
+
+
 <div id="productByIdForm" style="display: none;">
     <form id="productForm1">
         <div class="mb-3" style="justify-items: center;">
@@ -87,6 +97,26 @@
         <button type="button" class="btn btn-secondary" id="cancelBtn3">Cancelar</button>
     </form>
 </div>
+
+<div id="productByIdFormComplete" style="display: none;">
+    <form id="productForm1">
+        <div class="mb-3" style="justify-items: center;">
+            <label for="name" class="form-label-ID">Nombre</label>
+            <input type="text" class="form-control" id="nameProductById" required>
+            <label for="description" class="form-label-ID">Descripción</label>
+            <input type="text" class="form-control" id="descriptionProductById" required>
+            <label for="price" class="form-label-ID">Precio</label>
+            <input type="text" class="form-control" id="priceProductById" required>
+            <label for="quantity" class="form-label-ID">Cantidad</label>
+            <input type="text" class="form-control" id="quantityProductById" required>  
+            <label for="disponibility" class="form-label-ID">Disponibilidad</label>
+            <input type="text" class="form-control" id="disponibilityProductById" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnBuscar">OK</button>
+        <button type="button" class="btn btn-secondary" id="cancelBtn3">Cancelar</button>
+    </form>
+</div>
+
 </div>
 
 <!-- Seccion donde se muestran los resultados -->

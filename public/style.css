@@ -314,13 +314,16 @@ font-weight: bold;
 }
 
 
-.btts, #productByIdForm {
+.btts, #productByIdForm, #productByIdFormComplete {
   display: flex;
   justify-content: center;
   background-color: black;
   color: #ffffff;
   text-align: center;
   font-size: 20px;
+}
+#productForm1{
+  width: 100%;
 
 }
 
