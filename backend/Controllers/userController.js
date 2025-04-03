@@ -46,6 +46,8 @@ const loginUser = async (req, res) => {
         }
         //Generar token
         const token = jwt.sign({ email: email }, secretKey, {expiresIn: '1h'})
+        //console.log(token);
+        
         if(!token){
             console.log('Error al generar el token')
             return res.status(500).json({message: 'Error al generar el token'})
