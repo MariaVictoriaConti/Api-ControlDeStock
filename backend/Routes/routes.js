@@ -12,8 +12,8 @@ router.get('/allProducts', getAllProducts) //Aca deberiamos hacer endpoint mas e
 router.get('/:id', getProductById)
 router.get('/products/:name', getProductsByCategory)
 router.post('/addProduct', middleware.authenticate, addProduct)
-router.put('/:id', updateProductById)
-router.delete('/:id', deleteProductById)
+router.put('/:id', middleware.authenticate, updateProductById)
+router.delete('/:id', middleware.authenticate, deleteProductById)
 
 // Rutas de usuarios
 router.post('/register', registerUser)
