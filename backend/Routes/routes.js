@@ -4,13 +4,14 @@ const express = require('express');
 const { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById, getProductsByCategory } = require('../Controllers/productController')
 const { registerUser, loginUser, getAllUsers, getUserById, deleteUserById, updateUser } = require('../Controllers/userController')
 const { loginLimiter } = require('../Middlewares/loginLimiter')
+const middleware = require('../Middlewares/auth')
 const router = express.Router()
 
 // Rutas de productos
 router.get('/allProducts', getAllProducts) //Aca deberiamos hacer endpoint mas especificos: /getAllProducts, /getProductById, /addProduct etc
 router.get('/:id', getProductById)
 router.get('/products/:name', getProductsByCategory)
-router.post('/', addProduct)
+router.post('/addProduct', middleware.authenticate, addProduct)
 router.put('/:id', updateProductById)
 router.delete('/:id', deleteProductById)
 
@@ -19,8 +20,8 @@ router.post('/register', registerUser)
 router.post('/login', loginLimiter, loginUser)
 router.get('/users/getAll', getAllUsers)
 router.get('/users/:id', getUserById)
-router.put('/update/:id', updateUser)
-router.delete('/users/:id', deleteUserById)
+router.put('/updateUser/:id', updateUser)
+router.delete('/deleteUser/:id', deleteUserById)
 
 module.exports = router;
 
