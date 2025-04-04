@@ -2,12 +2,12 @@
 
 const PORT = 5500;
 // Función para cargar productos desde la API de MongoDB
-const url = `http://localhost:${PORT}/`;
+const url = `http://localhost:${PORT}`;
 
 
 
 // Script GET ALL PRODUCTS
-document.getElementById("Data").addEventListener("click", function () {
+document.getElementById("Data").addEventListener("click", function() {
     const resultDiv = document.getElementById("result");
 
     // Verificamos si las tarjetas ya están visibles
@@ -16,25 +16,20 @@ document.getElementById("Data").addEventListener("click", function () {
         resultDiv.style.display = "none";
     } else {
         // Si las tarjetas están ocultas, las mostramos
-
-        fetch(`${url}allProducts`)
+        fetch(`${url}/allProducts`)
             .then(response => response.json())
-            // La info que devuelve el controlador (lista de alumnos) llega como 'data'
+            // La info que devuelve el controlador (lista de productos) llega como 'data'
             .then(data => {
                 console.log(data);
                 let html = "";
-                // Por cada estudiante de la lista se va a imprimir en el html una card con los datos de cada alumno.
                 // Modelos de card sacados de librería boostrap
                 data.forEach(product => {
                     html += `<div class="cardTodas">
-
-
                                     <h2 class="card-title">${product.name}</h2>
                                     <p class="card-text">${product.description}</p>
                                     <p class="card-text">ID: ${product._id}</p>
                                     <p class="card-text">Cantidad disponible: ${product.quantity}</p>
                                     <p class="card-text">Precio: ${product.price}</p>
-
                         </div>`;
                 });
                 // Insertar el HTML generado en el contenedor
@@ -65,7 +60,7 @@ document.getElementById("Data").addEventListener("click", function () {
         // Se toma el valor que el usuario pone en el input (id del alumno buscado) y se guarda en una constante
         const id = document.getElementById("idProductById").value;
         // El id se pasa como el parametro al endpoint de peticion al back
-        fetch(`${url}${id}`, {
+        fetch(`${url}/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -101,30 +96,32 @@ document.getElementById("Data").addEventListener("click", function () {
     });
     
 
-//Script register
-document.getElementById('register').addEventListener('click', function(){
-    fetch(`${url}register`, {
-        method: 'POST',
+// Script para formulario de REGISTER
+document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Extremos y guardamos en constantes el email y contraseña ingresadas en los inputs
+    const email = document.getElementById("floatingInputEmailRes").value;
+    const password = document.getElementById("floatingInputPasswordReg").value;
+
+    // Enviamos la solicitud de registro al back
+    fetch(`${url}/register`, {
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            email: document.getElementById('floatingInputEmailReg').value,
-            password: document.getElementById('floatingInputPasswordReg').value
-        })
+        body: JSON.stringify({email, password})
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if(data.message === 'Usuario registrado con exito.'){
-                alert('Usuario registrado con exito.');
-                window.location.href = './index.html';
-            }
-            else{
-                alert('Error al registrar el usuario.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-})
+    .then(response => response.json())
+    .then(data => { // Comparamos la respuesta qu retorna del controlador para enviar el alerta al usuario
+        if (data.message === 'Usuario registrado con exito.') {
+            alert("Usuario registrado con exito!")
+        } else {
+            alert("El usuario ya existe.")
+        } 
+    })
+.catch(error => {
+        console.log("Error de registro-catch script", error);
+        alert("Hubo un error al registrar el usuario, intente nuevamente.")
+    });
+});
