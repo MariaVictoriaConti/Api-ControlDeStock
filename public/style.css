@@ -271,6 +271,14 @@
     width: 70%;
     margin: 130px 10px;
     font-size: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 20px;
+  }
+
+  .form, h1{
+    font-weight: bold;
+    
   }
 
   .form-select{

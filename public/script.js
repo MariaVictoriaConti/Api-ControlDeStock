@@ -100,3 +100,31 @@ document.getElementById("Data").addEventListener("click", function () {
             });
     });
     
+
+//Script register
+document.getElementById('register').addEventListener('click', function(){
+    fetch(`${url}register`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: document.getElementById('floatingInputEmailReg').value,
+            password: document.getElementById('floatingInputPasswordReg').value
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if(data.message === 'Usuario registrado con exito.'){
+                alert('Usuario registrado con exito.');
+                window.location.href = './index.html';
+            }
+            else{
+                alert('Error al registrar el usuario.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+})

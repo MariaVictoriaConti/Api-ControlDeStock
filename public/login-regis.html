@@ -53,26 +53,35 @@
 
     <main class="index">
         <section class="form">
-            <!--comienza form selecccionar-->
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Elegi una opcion</option>
-                <option value="1">Registrarse</option>
-                <option value="2">Ingresar</option>
-            </select>
-            <!--fin form selecccionar-->
+<h1>Registrarse</h1>
             <!--comienza formulario-->
             <div class="form-floating">
                 <h1>Email</h1>
-                <input type="text" class="form-control" id="floatingInput" placeholder="Email">
+                <input type="text" class="form-control" id="floatingInputEmailRes" placeholder="Email">
                 <label for="floatingInput"></label>
             </div>
             <div class="form-floating">
                 <h1>Constraseña</h1>
-                <input type="password" class="form-control" id="floatingTelefono" placeholder="Constraseña">
+                <input type="password" class="form-control" id="floatingInputPasswordReg" placeholder="Constraseña">
                 <label for="floatingContrasena"></label>
             </div>
-            <button type="submit" class="btn btn-secondary">Enviar</button>
+            <button type="submit" class="btn btn-secondary" id="register">Registrarse</button>
         </section>
+        <section class="form">
+            <h1>Iniciar Sesion</h1>
+                        <!--comienza formulario-->
+                        <div class="form-floating">
+                            <h1>Email</h1>
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Email">
+                            <label for="floatingInput"></label>
+                        </div>
+                        <div class="form-floating">
+                            <h1>Constraseña</h1>
+                            <input type="password" class="form-control" id="floatingTelefono" placeholder="Constraseña">
+                            <label for="floatingContrasena"></label>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Iniciar Sesion</button>
+                    </section>
     </main>
 
     <footer>
