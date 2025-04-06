@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
             const newUser = new User({'email': email, 'password': hashPassword})
             newUser.save()
             console.log('Usuario registrado con exito.');
-            return res.status(201).send('Usuario registrado con exito.')
+            return res.status(201).json({message: 'Usuario registrado con exito.'})
         } else {
             console.log('El usuario ya existe');
             return res.status(400).send('El usuario ya existe.')

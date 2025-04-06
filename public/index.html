@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Somos una tienda integral de bicicletas. Contamos con venta de bicicletas e insumos para tu bike, taller mecanico y un espacio de dispersion pensado especialmente para los ciclistas.">
+    <meta name="description"
+        content="Somos una tienda integral de bicicletas. Contamos con venta de bicicletas e insumos para tu bike, taller mecanico y un espacio de dispersion pensado especialmente para los ciclistas.">
     <title>Aromanza</title>
     <script src="https://kit.fontawesome.com/553c807147.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="./img/flor-de-loto.png" type="image/x-icon">
@@ -32,18 +33,18 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="./index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./login-regis.html">Ingresar</a>
+                            <a class="nav-link" href="#" id="loginFormNavBar">Ingresar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login-regis.html">Registrarse</a>
+                            <a class="nav-link" href="#" id="registerFormNavBar">Registrarse</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://wa.me/543513924215">Contacto</a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -52,75 +53,118 @@
     </header>
 
     <main>
-<div class="index">
-    <div class="imgCafe-icon" id="" >
-        <a href="#">Sahumerios</a>
-    </div>
-    <div class="imgRodadas-icon">
-        <a href="#">Difusores</a>
-    </div>
-    <div class="imgTaller-icon">
-        <a href="#">Aromatizadores</a>
-    </div>
-    <div class="imgTienda-icon">
-        <a href="#">Piedras</a>
-    </div>
-</div>
-        
-<div id=></div> <!-- Aquí se cargarán los productos dinámicamente -->
+        <div class="index">
 
+            <!-- Formulario de registro !-->
+            <form class="form" id="registerForm" style="display: none;">
+                <h1>Registrarse</h1>
+                <!--comienza formulario-->
+                <div class="form-floating">
+                    <h1>Email</h1>
+                    <input type="text" class="form-control" id="floatingInputEmailRes" placeholder="Email">
+                    <label for="floatingInput"></label>
+                </div>
+                <div class="form-floating">
+                    <h1>Constraseña</h1>
+                    <input type="password" class="form-control" id="floatingInputPasswordReg" placeholder="Constraseña">
+                    <label for="floatingContrasena"></label>
+                </div>
+                <button type="submit" class="btn btn-secondary" id="register">Registrarse</button>
+            </form>
 
-<!-- Boton para ver todos los productos -->
-<div class="btts"><button class="bttAll" id="Data">Ver todos los productos</button></div>
-
-
-<!-- Boton para ver buscar producto por ID-->
-<div class="btts"><button class="bttBuscarById" id="buscarById">Buscar producto por ID</button></div> 
-
-<!-- Boton para ver agregar/add producto por ID - Solo visible para usuarios con permiso -->
-<div class="btts"><button class="bttBuscarById" id="addById" style="display: none;">Agregar producto</button></div> 
-
-<!-- Boton para ver actualizar/update producto por ID - Solo visible para usuarios con permiso-->
-<div class="btts"><button class="bttBuscarById" id="updateById" style="display: none;">Actualizar producto por ID</button></div> 
-
-<!-- Boton para eliminar/delete producto por ID - Solo visible para usuarios con permiso -->
-<div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por ID</button></div> 
-
-
-<div id="productByIdForm" style="display: none;">
-    <form id="productForm1">
-        <div class="mb-3" style="justify-items: center;">
-            <label for="id" class="form-label-ID">ID</label>
-            <input type="text" class="form-control" id="idProductById" required>
+            <!-- Formulario de login !-->
+            <form class="form" id="loginForm" style="display: none;">
+                <h1>Iniciar Sesion</h1>
+                <!--comienza formulario-->
+                <div class="form-floating">
+                    <h1>Email</h1>
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Email">
+                    <label for="floatingInput"></label>
+                </div>
+                <div class="form-floating">
+                    <h1>Constraseña</h1>
+                    <input type="password" class="form-control" id="floatingTelefono" placeholder="Constraseña">
+                    <label for="floatingContrasena"></label>
+                </div>
+                <button type="submit" class="btn btn-secondary">Iniciar Sesion</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary" id="btnBuscar">Buscar</button>
-        <button type="button" class="btn btn-secondary" id="cancelBtn3">Cancelar</button>
-    </form>
-</div>
 
-<div id="productByIdFormComplete" style="display: none;">
-    <form id="productForm1">
-        <div class="mb-3" style="justify-items: center;">
-            <label for="name" class="form-label-ID">Nombre</label>
-            <input type="text" class="form-control" id="nameProductById" required>
-            <label for="description" class="form-label-ID">Descripción</label>
-            <input type="text" class="form-control" id="descriptionProductById" required>
-            <label for="price" class="form-label-ID">Precio</label>
-            <input type="text" class="form-control" id="priceProductById" required>
-            <label for="quantity" class="form-label-ID">Cantidad</label>
-            <input type="text" class="form-control" id="quantityProductById" required>  
-            <label for="disponibility" class="form-label-ID">Disponibilidad</label>
-            <input type="text" class="form-control" id="disponibilityProductById" required>
+        <!-- Seccion de productos por categoria!-->
+        <div class="index">
+            <div class="imgCafe-icon" id="">
+                <a href="#">Sahumerios</a>
+            </div>
+            <div class="imgRodadas-icon">
+                <a href="#">Difusores</a>
+            </div>
+            <div class="imgTaller-icon">
+                <a href="#">Aromatizadores</a>
+            </div>
+            <div class="imgTienda-icon">
+                <a href="#">Piedras</a>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary" id="btnBuscar">OK</button>
-        <button type="button" class="btn btn-secondary" id="cancelBtn3">Cancelar</button>
-    </form>
-</div>
 
-</div>
+        <div id=></div> <!-- Aquí se cargarán los productos dinámicamente -->
 
-<!-- Seccion donde se muestran los resultados -->
-<div id="result"></div> <!-- Aquí se cargarán los productos dinámicamente -->
+
+        <!-- Boton para ver todos los productos -->
+        <div class="btts"><button class="bttAll" id="Data">Ver todos los productos</button></div>
+
+
+        <!-- Boton para ver buscar producto por ID-->
+        <div class="btts"><button class="bttBuscarById" id="buscarById">Buscar producto por ID</button></div>
+
+        <div id="productByIdForm" style="display: none;">
+            <form id="productForm1">
+                <div class="mb-3" style="justify-items: center;">
+                    <label for="id" class="form-label-ID">ID</label>
+                    <input type="text" class="form-control" id="idProductById" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnBuscarId">Buscar</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn1">Cancelar</button>
+            </form>
+        </div>
+
+        <!-- Boton para ver agregar/add producto por ID - Solo visible para usuarios con permiso -->
+        <div class="btts"><button class="bttBuscarById" id="addById" style="display: none;">Agregar producto</button>
+        </div>
+
+        <!-- Boton para ver actualizar/update producto por ID - Solo visible para usuarios con permiso-->
+        <div class="btts"><button class="bttBuscarById" id="updateById" style="display: none;">Actualizar producto por
+                ID</button></div>
+
+        <!-- Boton para eliminar/delete producto por ID - Solo visible para usuarios con permiso -->
+        <div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por
+                ID</button></div>
+
+
+
+
+        <div id="productByIdFormComplete" style="display: none;">
+            <form id="productForm2">
+                <div class="mb-3" style="justify-items: center;">
+                    <label for="name" class="form-label-ID">Nombre</label>
+                    <input type="text" class="form-control" id="nameProductById" required>
+                    <label for="description" class="form-label-ID">Descripción</label>
+                    <input type="text" class="form-control" id="descriptionProductById" required>
+                    <label for="price" class="form-label-ID">Precio</label>
+                    <input type="text" class="form-control" id="priceProductById" required>
+                    <label for="quantity" class="form-label-ID">Cantidad</label>
+                    <input type="text" class="form-control" id="quantityProductById" required>
+                    <label for="disponibility" class="form-label-ID">Disponibilidad</label>
+                    <input type="text" class="form-control" id="disponibilityProductById" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnOk">OK</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn2">Cancelar</button>
+            </form>
+        </div>
+
+        </div>
+
+        <!-- Seccion donde se muestran los resultados -->
+        <div id="result"></div> <!-- Aquí se cargarán los productos dinámicamente -->
     </main>
 
     <footer>
@@ -131,10 +175,8 @@
 
         <div class="redesSociales footer2">
             <a href="https://wa.me/543513924215" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" target="_blank"><i
-                    class="fa-brands fa-instagram"></i></a>
-            <a href="#" target="_blank"><i
-                    class="fa-brands fa-tiktok"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         <a href="./pages/nosotros.html" class="conocenos">Conocenos</a>
 
@@ -147,7 +189,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-            <!-- Conexion con script.js -->
+    <!-- Conexion con script.js -->
     <script src="script.js" defer></script>
 </body>
 

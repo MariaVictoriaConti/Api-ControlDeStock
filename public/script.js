@@ -7,6 +7,7 @@ const url = `http://localhost:${PORT}`;
 
 
 // Script GET ALL PRODUCTS
+
 document.getElementById("Data").addEventListener("click", function() {
     const resultDiv = document.getElementById("result");
 
@@ -50,7 +51,7 @@ document.getElementById("Data").addEventListener("click", function() {
     })
     
     // Ocultar el formulario si se hace clic en "Cancelar"
-    document.getElementById("cancelBtn3").addEventListener("click", function () {
+    document.getElementById("cancelBtn1").addEventListener("click", function () {
         document.getElementById("productByIdForm").style.display = "none";
     });    
     
@@ -85,7 +86,7 @@ document.getElementById("Data").addEventListener("click", function() {
                                     </div>
                                 </div>`;
                         document.getElementById("result").innerHTML = html;
-                        document.getElementById("cancelBtn3").addEventListener("click", function () {
+                        document.getElementById("cancelBtn1").addEventListener("click", function () {
                             document.getElementById("result").style.display = "none";
                         });
                 }
@@ -96,7 +97,12 @@ document.getElementById("Data").addEventListener("click", function() {
     });
     
 
-// Script para formulario de REGISTER
+
+//Script para formulario de REGISTER
+document.getElementById("registerFormNavBar").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("registerForm").style.display = "block";    
+})
 document.getElementById("registerForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -116,11 +122,61 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     .then(data => { // Comparamos la respuesta qu retorna del controlador para enviar el alerta al usuario
         if (data.message === 'Usuario registrado con exito.') {
             alert("Usuario registrado con exito!")
+            document.getElementById("registerForm").style.display = "none";
         } else {
             alert("El usuario ya existe.")
         } 
     })
-.catch(error => {
+    .catch(error => {
+        console.log("Error de registro-catch script", error);
+        alert("Hubo un error al registrar el usuario, intente nuevamente.")
+    });
+});
+
+//Script para formulario de LOGIN
+document.getElementById("loginFormNavBar").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("loginForm").style.display = "block"; 
+})
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Extremos y guardamos en constantes el email y contraseña ingresadas en los inputs
+    const email = document.getElementById("floatingInput").value;
+    const password = document.getElementById("floatingTelefono").value;
+
+    // Enviamos la solicitud de registro al back
+    fetch(`${url}/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email, password})
+    })
+    .then(response => response.json())
+    .then(data => { // Comparamos la respuesta qu retorna del controlador para enviar el alerta al usuario
+        if (data.message === 'Email no registrado.') {
+            alert("Error. El email no está registrado o es incorrecto.")
+        } else if (data.message === 'Contrasena incorrecta') {
+            alert("Error. La contraseña es incorrecta.")
+        } else {             
+            
+            // Si la solicitud es exitosa, toma el token que se envia del controlador. Con el metodo split() los dividimos para extraer el payload
+            const partsToken = data.token.split('.')
+            
+            // El payload se guarda en una constante
+            const payload = partsToken[1]
+            
+            // Esa constante se pasa al sessionStorage del navegador, que va a persistir mientras el navegador esté abierto
+            // Una vez que el navgador se cierra, la informacion ahi reservada se elimina.
+            // En las rutas protegidas se realiza un getItem() para validar los accesos.
+            window.sessionStorage.setItem('token', data.token)    
+            alert("Inicio de sesión exitoso!")
+            document.getElementById("loginForm").style.display = "none";
+        } 
+
+    })
+    .catch(error => {
         console.log("Error de registro-catch script", error);
         alert("Hubo un error al registrar el usuario, intente nuevamente.")
     });
