@@ -6,8 +6,7 @@ const url = `http://localhost:${PORT}`;
 
 
 
-// Script GET ALL PRODUCTS
-
+////////////// Script GET ALL PRODUCTS
 document.getElementById("Data").addEventListener("click", function() {
     const resultDiv = document.getElementById("result");
 
@@ -45,7 +44,7 @@ document.getElementById("Data").addEventListener("click", function() {
 
 
 
-// Script GET PRODUCT BY ID
+////////////// Script GET PRODUCT BY ID
     document.getElementById("buscarById").addEventListener("click", function () {
         document.getElementById("productByIdForm").style.display = "block";
     })
@@ -97,8 +96,93 @@ document.getElementById("Data").addEventListener("click", function() {
     });
     
 
+////////////// Script para ADD PRODUCT
+document.getElementById("addById").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("productByIdFormComplete").style.display = "block";
+    document.getElementById("cancelBtn2").addEventListener("click", function () {
+        document.getElementById("productByIdFormComplete").style.display = "none";
+    });
+}) 
+document.getElementById("productForm2").addEventListener("submit", function (e) {
+    e.preventDefault();
+    // Se toma el valor que el usuario pone en el input (id del alumno buscado) y se guarda en una constante
+    const name = document.getElementById("nameProductById").value;
+    const description = document.getElementById("descriptionProductById").value;
+    const price = document.getElementById("priceProductById").value;
+    const quantity = document.getElementById("quantityProductById").value;
+    const disponibility = document.getElementById("disponibilityProductById").value;
+    
+    // Enviamos la solicitud de registro al back
+    fetch(`${url}/addProduct`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+        },
+        body: JSON.stringify({name, description, price, quantity, disponibility})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.message === 'Producto agregado con exito!'){
+            alert("Producto agregado con exito!")
+            document.getElementById("productByIdFormComplete").style.display = "none";
+        } else {
+            alert("Error al agregar el producto.")
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
 
-//Script para formulario de REGISTER
+//////////////Script para UPDATE PRODUCT BY ID
+document.getElementById("updateById").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    document.getElementById("updateproductByIdFormComplete").style.display = "block";
+    document.getElementById("cancelBtnUpdate").addEventListener("click", function () {
+        document.getElementById("updateproductByIdFormComplete").style.display = "none";
+    });
+})
+document.getElementById("productFormUpdate").addEventListener("submit", function (e) {   
+    e.preventDefault();
+const id = document.getElementById("idUpdateProductById").value;
+    const name = document.getElementById("nameUpdateProductById").value;
+    const description = document.getElementById("descriptionUpdateProductById").value;
+    const price = document.getElementById("priceUpdateProductById").value;
+    const quantity = document.getElementById("quantityUpdateProductById").value;
+    const disponibility = document.getElementById("disponibilityUpdateProductById").value;
+    
+    // Enviamos la solicitud de registro al back
+    fetch(`${url}/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+        },
+        body: JSON.stringify({name, description, price, quantity, disponibility})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.message === 'Producto actualizado con exito!'){
+            alert("Producto actualizado con exito!")
+            document.getElementById("updateProductByIdFormComplete").style.display = "none";
+
+        } else {
+            alert("Error al actualizar el producto.")
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
+
+
+
+
+//////////////Script para formulario de REGISTER
 document.getElementById("registerFormNavBar").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById("registerForm").style.display = "block";    
@@ -133,7 +217,8 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     });
 });
 
-//Script para formulario de LOGIN
+
+//////////////Script para formulario de LOGIN
 document.getElementById("loginFormNavBar").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById("loginForm").style.display = "block"; 
@@ -173,6 +258,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
             window.sessionStorage.setItem('token', data.token)    
             alert("Inicio de sesión exitoso!")
             document.getElementById("loginForm").style.display = "none";
+            document.getElementById("updateById").style.display = "block";
+            document.getElementById("deleteById").style.display = "block";
+            document.getElementById("addById").style.display = "block";
         } 
 
     })

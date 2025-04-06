@@ -28,7 +28,8 @@ const addProduct = async (req, res) => {
     try {
         const newProduct = new Product(req.body);
         await newProduct.save()
-        res.json(newProduct)
+        console.log("Producto agregado con exito!");        
+        res.json({message: 'Producto agregado con exito!'})
     } catch (error) {
         console.error('No se pudo agregar el producto.', error)
     }
@@ -39,8 +40,9 @@ const updateProductById = async (req, res) => {
     try {
         // const productId = req.params.id;
         const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new : true })
-        res.json(product)
-    } catch (error) {
+        console.log("Producto actualizado con exito!");
+        res.json({message: 'Producto actualizado con exito!'})
+            } catch (error) {
         console.error('No se pudo actualizar el producto por ID.', error)
     }
 }

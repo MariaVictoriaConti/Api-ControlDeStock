@@ -130,18 +130,6 @@
         <!-- Boton para ver agregar/add producto por ID - Solo visible para usuarios con permiso -->
         <div class="btts"><button class="bttBuscarById" id="addById" style="display: none;">Agregar producto</button>
         </div>
-
-        <!-- Boton para ver actualizar/update producto por ID - Solo visible para usuarios con permiso-->
-        <div class="btts"><button class="bttBuscarById" id="updateById" style="display: none;">Actualizar producto por
-                ID</button></div>
-
-        <!-- Boton para eliminar/delete producto por ID - Solo visible para usuarios con permiso -->
-        <div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por
-                ID</button></div>
-
-
-
-
         <div id="productByIdFormComplete" style="display: none;">
             <form id="productForm2">
                 <div class="mb-3" style="justify-items: center;">
@@ -160,6 +148,40 @@
                 <button type="button" class="btn btn-secondary" id="cancelBtn2">Cancelar</button>
             </form>
         </div>
+
+        <!-- Boton para ver actualizar/update producto por ID - Solo visible para usuarios con permiso-->
+        <div class="btts"><button class="bttBuscarById" id="updateById" style="display: none;">Actualizar producto por
+                ID</button></div>
+
+        <div id="updateproductByIdFormComplete" style="display: none;">
+            <form id="productFormUpdate">
+                <div class="mb-3" style="justify-items: center;">
+                    <label for="id" class="form-label-ID">ID</label>
+                    <input type="text" class="form-control" id="idUpdateProductById" required>
+                    <label for="name" class="form-label-ID">Nombre</label>
+                    <input type="text" class="form-control" id="nameUpdateProductById" required>
+                    <label for="description" class="form-label-ID">Descripción</label>
+                    <input type="text" class="form-control" id="descriptionUpdateProductById" required>
+                    <label for="price" class="form-label-ID">Precio</label>
+                    <input type="text" class="form-control" id="priceUpdateProductById" required>
+                    <label for="quantity" class="form-label-ID">Cantidad</label>
+                    <input type="text" class="form-control" id="quantityUpdateProductById" required>
+                    <label for="disponibility" class="form-label-ID">Disponibilidad</label>
+                    <input type="text" class="form-control" id="disponibilityUpdateProductById" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnUpdateOk">OK</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtnUpdate">Cancelar</button>
+            </form>
+        </div>
+
+        <!-- Boton para eliminar/delete producto por ID - Solo visible para usuarios con permiso -->
+        <div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por
+                ID</button></div>
+
+
+
+
+
 
         </div>
 

@@ -322,7 +322,7 @@ font-weight: bold;
 }
 
 
-.btts, #productByIdForm, #productByIdFormComplete {
+.btts, #productByIdForm, #productByIdFormComplete, #updateproductByIdFormComplete {
   display: flex;
   justify-content: center;
   background-color: black;
@@ -330,12 +330,12 @@ font-weight: bold;
   text-align: center;
   font-size: 20px;
 }
-#productForm1{
+#productForm1, #productForm2, #productFormUpdate{
   width: 100%;
 
 }
 
-.bttAll, .bttBuscarById{
+.bttAll, .bttBuscarById, .btnUpdateOk{
   width: 20%;
   background-size: contain;
   background-repeat: no-repeat;
