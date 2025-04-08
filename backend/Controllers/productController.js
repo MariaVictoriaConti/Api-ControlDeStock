@@ -51,7 +51,7 @@ const updateProductById = async (req, res) => {
 const deleteProductById  = async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id)
-        return res.status(200).json({status: "OK"})
+        return res.json({message: 'Producto eliminado con exito!'})
     } catch (error) {
         console.error('Error al eliminar el producto.')
         return res.status(500).json({message: 'Error al eliminar el producto.'})
