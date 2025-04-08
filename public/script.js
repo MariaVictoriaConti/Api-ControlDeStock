@@ -245,8 +245,11 @@ document.getElementById("deleteById").addEventListener("click", function (e) {
     document.getElementById("cancelBtnDelete").addEventListener("click", function () {
         document.getElementById("deleteProductForm1").style.display = "none";
     });
-    document.getElementById("btnDeleteId").addEventListener("click", function () {
+})
+    document.getElementById("deleteProductForm1").addEventListener("submit", function (e) {
+        e.preventDefault();
         const id = document.getElementById("idDeleteProductById").value;
+
         fetch(`${url}/${id}`, {
             method: 'DELETE',
             headers: {
@@ -256,9 +259,15 @@ document.getElementById("deleteById").addEventListener("click", function (e) {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.message === 'Producto eliminado') {
+                if (data.message === 'Producto eliminado con exito!') {
                     alert("Producto eliminado con exito!")
-
+                    if(window.sessionStorage.getItem('token')){
+                        document.getElementById("loginForm").style.display = "none";
+                        document.getElementById("updateById").style.display = "block";
+                        document.getElementById("deleteById").style.display = "block";
+                        document.getElementById("addById").style.display = "block";
+                    }
+//VER si funciona esto de arriba para q no se vayan los botones cuando recarga la pagina.. aun no probe
                 } else {
                     alert('Error al eliminar el producto.')
                 }
@@ -267,8 +276,7 @@ document.getElementById("deleteById").addEventListener("click", function (e) {
                 console.error('Error:', error);
             });
 
-    })
-});
+    });
 
 
 
