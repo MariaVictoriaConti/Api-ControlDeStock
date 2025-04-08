@@ -92,21 +92,22 @@
 
         <!-- Seccion de productos por categoria!-->
         <div class="index">
-            <div class="imgCafe-icon" id="">
-                <a href="#">Sahumerios</a>
+            <div class="imgCafe-icon" id="Sahumerio">
+                <a href="#" class="category-link" data-category="Sahumerio">Sahumerios</a>
             </div>
             <div class="imgRodadas-icon">
-                <a href="#">Difusores</a>
+                <a href="#" class="category-link" data-category="Difusores">Difusores</a>
             </div>
             <div class="imgTaller-icon">
-                <a href="#">Aromatizadores</a>
+                <a href="#" class="category-link" data-category="Aromatizadores">Aromatizadores</a>
             </div>
             <div class="imgTienda-icon">
-                <a href="#">Piedras</a>
+                <a href="#" class="category-link" data-category="Piedras">Piedras</a>
             </div>
         </div>
 
-        <div id=></div> <!-- Aquí se cargarán los productos dinámicamente -->
+        <div id="product-list" class="product-list"></div> 
+        <!-- Aquí se cargarán los productos dinámicamente -->
 
 
         <!-- Boton para ver todos los productos -->
@@ -175,12 +176,18 @@
         </div>
 
         <!-- Boton para eliminar/delete producto por ID - Solo visible para usuarios con permiso -->
-        <div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por
-                ID</button></div>
+        <div class="btts"><button class="bttBuscarById" id="deleteById" style="display: none;">Eliminar producto por ID</button></div>
 
-
-
-
+        <div id="deleteProductByIdForm" style="display: none;">
+            <form id="deleteProductForm1">
+                <div class="mb-3" style="justify-items: center;">
+                    <label for="id" class="form-label-ID">ID</label>
+                    <input type="text" class="form-control" id="idDeleteProductById" required>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnDeleteId">Eliminar</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtnDelete">Cancelar</button>
+            </form>
+        </div>
 
 
         </div>

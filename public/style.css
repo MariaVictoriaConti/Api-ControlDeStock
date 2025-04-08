@@ -295,7 +295,7 @@ font-weight: bold;
 
   /*Seccion get allProducts*/
 
-#result {
+#result, .product-list {
   display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
@@ -303,18 +303,19 @@ font-weight: bold;
       background-color: black;
 }
 
-.cardTodas {
+.cardTodas, .product-item {
   width: 40%;
   margin: 50px;
   background-color: rgb(255, 255, 255);
   border: 2px solid black;
+  list-style: none;
 }
 
-.card-title {
+.card-title, .product-item h3 {
   font-size: 30px;
   font-weight: bold;
 }
-.card-text {
+.card-text, .product-item p {
   text-align: center;
   margin: 10px;
   font-weight: bolder;
