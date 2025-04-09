@@ -124,4 +124,5 @@ Esta interfaz permite interactuar con la gestión de productos de la tienda y lo
 
 ### **Notas**
 
-En esta API Rest también se incluyeron funciones específicas para la gestión de usuarios, pero que no se encuentran vinculadas al Frontend. Recomendamos el uso de Postman para acceder a estas funciones. 
+- En esta API Rest también se incluyeron funciones específicas para la gestión de usuarios, pero que no se encuentran vinculadas al Frontend. Recomendamos el uso de Postman para acceder a estas funciones. 
+- Para las pruebas en Postman de las funciones que requieren autenticación (`addProduct`, `updateProductById` y `deleteProductById`) es necesario utilizar la opción 'Auth Bearer Token' y poner el token en su totalidad. 

@@ -7,7 +7,7 @@ const url = `http://localhost:${PORT}`;
 
 
 
-////////////// Script GET ALL PRODUCTS
+//-------------------------- Script GET ALL PRODUCTS-----------------------------
 document.getElementById("Data").addEventListener("click", function () {
     const resultDiv = document.getElementById("result");
 
@@ -45,7 +45,7 @@ document.getElementById("Data").addEventListener("click", function () {
 
 
 
-////////////// Script GET PRODUCT BY ID
+//------------------------------------ Script GET PRODUCT BY ID------------------------------------ 
 document.getElementById("buscarById").addEventListener("click", function () {
     document.getElementById("productByIdForm").style.display = "block";
 })
@@ -58,7 +58,7 @@ document.getElementById("cancelBtn1").addEventListener("click", function () {
 // Manejar la acción de envío del formulario
 document.getElementById("productForm1").addEventListener("submit", function (e) {
     e.preventDefault();
-    // Se toma el valor que el usuario pone en el input (id del alumno buscado) y se guarda en una constante
+    // Se toma el valor que el usuario pone en el input (id del producto buscado) y se guarda en una constante
     const id = document.getElementById("idProductById").value;
     // El id se pasa como el parametro al endpoint de peticion al back
     fetch(`${url}/${id}`, {
@@ -69,8 +69,8 @@ document.getElementById("productForm1").addEventListener("submit", function (e) 
     })
         .then(response => response.json())
         .then(data => {
-            // Info del estudiante que retorna lo renderiza en el html
-            // Si no encontró ningun alumno sale un alerta. 
+            // Info del producto que retorna lo renderiza en el html
+            // Si no encontró ningun producto sale un alerta. 
             if (data.name === undefined) {
                 alert('Producto no encontrado')
             } else {
@@ -97,7 +97,7 @@ document.getElementById("productForm1").addEventListener("submit", function (e) 
 });
 
 
-////////////// Script para GET PRODUCTS by name (categorias)
+//------------------------------- Script para GET PRODUCTS by catgory (name)-------------------------------
 
 // Obtener todos los enlaces de categorías
 const categoryLinks = document.querySelectorAll('.category-link');
@@ -119,10 +119,6 @@ async function loadProductsByCategory(category) {
     try {
         // Hacer la solicitud al backend para obtener los productos
         const response = await fetch(`${url}/products/${category}`);
-        
-        // if (!response) {
-        //     throw new Error('Error al obtener los productos');
-        // }
 
         const products = await response.json();  // Convertir la respuesta a JSON
 
@@ -157,7 +153,7 @@ async function loadProductsByCategory(category) {
 
 
 
-    ////////////// Script para ADD PRODUCT
+    //------------------------------------- Script para ADD PRODUCT-------------------------------------
     document.getElementById("addById").addEventListener("click", function (e) {
         e.preventDefault();
         document.getElementById("productByIdFormComplete").style.display = "block";
@@ -167,7 +163,7 @@ async function loadProductsByCategory(category) {
     })
 document.getElementById("productForm2").addEventListener("submit", function (e) {
     e.preventDefault();
-    // Se toma el valor que el usuario pone en el input (id del alumno buscado) y se guarda en una constante
+    // Se toma el valor que el usuario pone en el input (id del producto buscado) y se guarda en una constante
     const name = document.getElementById("nameProductById").value;
     const description = document.getElementById("descriptionProductById").value;
     const price = document.getElementById("priceProductById").value;
@@ -197,7 +193,7 @@ document.getElementById("productForm2").addEventListener("submit", function (e) 
         });
 });
 
-//////////////Script para UPDATE PRODUCT BY ID
+//----------------------------------Script para UPDATE PRODUCT BY ID----------------------------------
 document.getElementById("updateById").addEventListener("click", function (e) {
     e.preventDefault();
 
@@ -228,8 +224,6 @@ document.getElementById("productFormUpdate").addEventListener("submit", function
         .then(data => {
             if (data.message === 'Producto actualizado con exito!') {
                 alert("Producto actualizado con exito!")
-
-
             } else {
                 alert("Error al actualizar el producto.")
             }
@@ -239,7 +233,7 @@ document.getElementById("productFormUpdate").addEventListener("submit", function
         });
 });
 
-//////////////Script para DELETE product by ID
+//---------------------------Script para DELETE product by ID---------------------------
 document.getElementById("deleteById").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById("deleteProductByIdForm").style.display = "block";
@@ -268,7 +262,6 @@ document.getElementById("deleteById").addEventListener("click", function (e) {
                         document.getElementById("deleteById").style.display = "block";
                         document.getElementById("addById").style.display = "block";
                     }
-//VER si funciona esto de arriba para q no se vayan los botones cuando recarga la pagina.. aun no probe
                 } else {
                     alert('Error al eliminar el producto.')
                 }
@@ -281,7 +274,7 @@ document.getElementById("deleteById").addEventListener("click", function (e) {
 
 
 
-//////////////Script para formulario de REGISTER
+//------------------------------Script para formulario de REGISTER------------------------------
 document.getElementById("registerFormNavBar").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById("registerForm").style.display = "block";
@@ -302,7 +295,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
         body: JSON.stringify({ email, password })
     })
         .then(response => response.json())
-        .then(data => { // Comparamos la respuesta qu retorna del controlador para enviar el alerta al usuario
+        .then(data => { // Comparamos la respuesta que retorna del controlador para enviar el alerta al usuario
             if (data.message === 'Usuario registrado con exito.') {
                 alert("Usuario registrado con exito!")
                 document.getElementById("registerForm").style.display = "none";
@@ -317,7 +310,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
 });
 
 
-//////////////Script para formulario de LOGIN
+//---------------------------Script para formulario de LOGIN-------------------------------
 document.getElementById("loginFormNavBar").addEventListener("click", function (e) {
     e.preventDefault();
     document.getElementById("loginForm").style.display = "block";
@@ -338,10 +331,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         body: JSON.stringify({ email, password })
     })
         .then(response => response.json())
-        .then(data => { // Comparamos la respuesta qu retorna del controlador para enviar el alerta al usuario
-            if (data.message === 'Email no registrado.') {
+        .then(data => { // Comparamos la respuesta que retorna del controlador para enviar el alerta al usuario
+            if (data.message === "Usuario no registrado.") {
                 alert("Error. El email no está registrado o es incorrecto.")
-            } else if (data.message === 'Contrasena incorrecta') {
+            } else if (data.message === 'Contraseña incorrecta') {
                 alert("Error. La contraseña es incorrecta.")
             } else {
 
@@ -361,10 +354,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
                 document.getElementById("deleteById").style.display = "block";
                 document.getElementById("addById").style.display = "block";
             }
-
         })
         .catch(error => {
             console.log("Error de registro-catch script", error);
-            alert("Hubo un error al registrar el usuario, intente nuevamente.")
+            alert("Hubo un error al ingresar, intente nuevamente.")
         });
 });

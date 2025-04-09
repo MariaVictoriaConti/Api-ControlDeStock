@@ -1,4 +1,4 @@
-//Crear el archivo database.js para manejar la conexión a MongoDB
+//En este archivo se maneja la conexión a MongoDB
 
 // Importamos mongoose
 const mongoose = require('mongoose');
