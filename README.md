@@ -1,7 +1,6 @@
-# 🚲 AROMANZA - Tienda y taller de Bicicletas 🌟
+# 🌸 AROMANZA - Tienda de aromas, sahumerios y difusores 🌸
 
-**Aromanza** es una tienda integral de bicicletas que ofrece productos, servicios y experiencias pensadas para ciclistas. Esta API RESTful fue desarrollada para gestionar eficientemente el stock de productos, repuestos y accesorios disponibles en la tienda. Además, permite llevar un registro ordenado de entradas y salidas del inventario, facilitando la gestión del almacén y el seguimiento de productos.
-
+**Aromanza** se especializa en la gestión de ventas de sahumerios artesanales, difusores ambientales y esencias seleccionadas para equilibrar tus espacios y acompañarte en tu bienestar diario. Esta API RESTful fue desarrollada para gestionar eficientemente el stock de productos disponibles en la tienda. Además, permite llevar un registro ordenado de entradas y salidas del inventario, facilitando la gestión del almacén y el seguimiento de productos.
 
 ## Tecnologías Utilizadas
 
@@ -9,7 +8,7 @@
 - **MongoDB** con **Mongoose**: para la base de datos.
 - **bcrypt**: utilizado para hashear contraseñas de manera segura.
 - **dotenv**: para configuración de entorno.
-- **jsonwebtoken**: Generación y validación de tokens para autenticación.
+- **jsonwebtoken**: generación y validación de tokens para autenticación.
 - **cors**: para el manejo seguro de peticiones y solicitudes.
 
 ---
@@ -80,6 +79,10 @@ El directorio `/public` contiene los archivos de la interfaz de usuario (fronten
    ```bash
    npm run dev
    ```
+   O también se puede utilizar el siguiente comando:
+   ```bash
+   npm start
+   ```
 
 ---
 
@@ -87,18 +90,26 @@ El directorio `/public` contiene los archivos de la interfaz de usuario (fronten
 
 ### **Usuarios**
 
-El sistema permite a los usuarios realizar las siguientes acciones:
+Todos los usuarios pueden acceder a las siguientes funciones:
+
+-**Ver todos los productos**: Permite acceder a la lista de todos los productos disponibles en el catálogo.
+
+-**Buscar producto por ID**: Busar un producto en específico según su ID.
 
 - **Registrar una cuenta de usuario**: Crear una cuenta proporcionando correo y contraseña.
+
+El sistema permite a los usuarios registrados realizar las siguientes acciones:
+
 - **Iniciar sesión**: Autenticarse con correo y contraseña, generando un token JWT.
-- **Consultar el perfil de usuario**: Ver información del perfil. Sólo disponible para usuarios con permiso.
 - **Consultar productos**: Ver la lista completa de los productos disponibles. Se puede filtrar por su ID.
-- **Gestionar productos**: Agregar, editar o eliminar productos del inventario. Sólo disponible para usuarios con permiso.
-- **Gestionar categorías**: Crear y editar categorías de productos. Sólo disponible para usuarios con permiso.
+- **Gestionar productos**: Agregar, editar o eliminar productos del inventario. 
+
 
 ### **Autenticación con JWT**
 
-Las rutas protegidas requieren que los usuarios estén autenticados mediante un **token JWT**. El token se obtiene al iniciar sesión y debe incluirse en el encabezado de las solicitudes a rutas protegidas
+Las rutas protegidas requieren que los usuarios estén autenticados mediante un **token JWT**. El token se obtiene al iniciar sesión y debe incluirse en el encabezado de las solicitudes a rutas protegidas.
+
+---
 
 ### **Frontend**
 
@@ -108,3 +119,9 @@ Esta interfaz permite interactuar con la gestión de productos de la tienda y lo
 - **Formulario de inicio de sesión**: Los usuarios pueden ingresar su correo y contraseña para autenticarse y obtener un token JWT.
 - **Interfaz de visualización de productos**: Muestra la lista de productos disponibles, permitiendo filtrar por su ID. Los usuarios pueden consultar los detalles de cada producto.
 - **Botón para agregar o actualizar productos**: Permite a los usuarios agregar o actualizar productos. Sólo visible para usuarios con permiso.
+
+---
+
+### **Notas**
+
+En esta API Rest también se incluyeron funciones específicas para la gestión de usuarios, pero que no se encuentran vinculadas al Frontend. Recomendamos el uso de Postman para acceder a estas funciones. 

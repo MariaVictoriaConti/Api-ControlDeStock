@@ -64,11 +64,11 @@ const getProductsByCategory = async (req, res) => {
         const category = req.params.name;
         const products = await Product.find({name: category});
         if (products.length === 0) {
-            return res.json({message:'No hay productos en esta categoría'});
+            return res.status(404).json({message:'No hay productos en esta categoría'});
         }
         res.json(products);
     } catch (error) {
-        console.error('Error al obtener productos pr categoría:', error);
+        console.error('Error al obtener productos por categoría:', error);
         res.status(500).json({message: 'Error del servidor'});
     }
 };

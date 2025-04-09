@@ -120,9 +120,9 @@ async function loadProductsByCategory(category) {
         // Hacer la solicitud al backend para obtener los productos
         const response = await fetch(`${url}/products/${category}`);
         
-        if (!response.ok) {
-            throw new Error('Error al obtener los productos');
-        }
+        // if (!response) {
+        //     throw new Error('Error al obtener los productos');
+        // }
 
         const products = await response.json();  // Convertir la respuesta a JSON
 
@@ -131,7 +131,8 @@ async function loadProductsByCategory(category) {
         productList.innerHTML = '';  // Limpiar productos anteriores
 
         // Verificar si se encontraron productos
-        if (products.length === 0) {
+        if (response.status === 404) {
+            alert("No hay productos en esta categoria");
             productList.innerHTML = `<li>No hay productos en esta categoría</li>`;
         } else {
             // Mostrar los productos

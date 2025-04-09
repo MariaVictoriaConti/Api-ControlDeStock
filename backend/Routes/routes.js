@@ -1,4 +1,4 @@
-//Aca van todas las rutas tanto de users como de products, tambien se puede hacer un archivo por cada entidad pero no es necesario, ver que prefiere la mayoria
+// En este archivo se encuentran todas las rutas
 
 const express = require('express');
 const { addProduct, getAllProducts, getProductById, updateProductById, deleteProductById, getProductsByCategory } = require('../Controllers/productController')
@@ -8,9 +8,9 @@ const middleware = require('../Middlewares/auth')
 const router = express.Router()
 
 // Rutas de productos
-router.get('/allProducts', getAllProducts) //Aca deberiamos hacer endpoint mas especificos: /getAllProducts, /getProductById, /addProduct etc
-router.get('/:id', getProductById)
+router.get('/allProducts', getAllProducts)
 router.get('/products/:name', getProductsByCategory)
+router.get('/:id', getProductById)
 router.post('/addProduct', middleware.authenticate, addProduct)
 router.put('/:id', middleware.authenticate, updateProductById)
 router.delete('/:id', middleware.authenticate, deleteProductById)
@@ -24,5 +24,3 @@ router.put('/updateUser/:id', updateUser)
 router.delete('/deleteUser/:id', deleteUserById)
 
 module.exports = router;
-
-// FALTAN: autenticacion (middleware)
