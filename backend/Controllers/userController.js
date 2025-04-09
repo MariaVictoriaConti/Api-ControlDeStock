@@ -94,15 +94,15 @@ const deleteUserById  = async (req, res) => {
 
 
 // Funcion para editar info de un usuario
-// REVISAR - Si se pone en el cuerpo para cambiar la contraseña la va a editar tambien pero sin hash. 
 const updateUser = async (req, res) => {
     try {
         const { id } = req.params
-        const {email, password} = req.body
-        if (password) {
-            await bcrypt.hash(password, 10)
-        }
+        let {email, password} = req.body
         const newData = {email, password}
+        if (password) {
+            const newPassword = await bcrypt.hash(newData.password, 10)
+            newData.password = newPassword
+        }
         if (!id || !newData) {
             return res.status(400).json({message: 'Error en la información enviada.'})
         }

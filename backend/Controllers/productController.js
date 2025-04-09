@@ -38,7 +38,6 @@ const addProduct = async (req, res) => {
 //Funcion para actualizar un producto por ID - FUNCIONA
 const updateProductById = async (req, res) => {
     try {
-        // const productId = req.params.id;
         const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new : true })
         console.log("Producto actualizado con exito!");
         res.json({message: 'Producto actualizado con exito!'})
