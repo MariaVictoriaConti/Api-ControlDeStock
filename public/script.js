@@ -356,7 +356,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
             }
         })
         .catch(error => {
-            console.log("Error de registro-catch script", error);
-            alert("Hubo un error al ingresar, intente nuevamente.")
+            console.log("Muchos intentos al ingresar-catch script", error);
+            alert("Muchos intentos de login, intente en unos minutos.")
         });
 });
