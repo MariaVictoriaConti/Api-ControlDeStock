@@ -26,6 +26,7 @@ document.getElementById("Data").addEventListener("click", function () {
                 // Modelos de card sacados de librería boostrap
                 data.forEach(product => {
                     html += `<div class="cardTodas">
+                                    <img src="./img/sahumerios.jpg" alt="producto" class="card-img-top">
                                     <h2 class="card-title">${product.name}</h2>
                                     <p class="card-text">${product.description}</p>
                                     <p class="card-text">ID: ${product._id}</p>
@@ -77,6 +78,7 @@ document.getElementById("productForm1").addEventListener("submit", function (e) 
                 let html = `<div class="col-md-4 cardTodas">
                                 <div class="card-getById">
                                     <div class="card-body">
+                                    <img src="./img/sahumerios.jpg" alt="producto" class="card-img-top">
                                         <h5 class="card-title">Nombre: ${data.name}</h5>
                                         <p class="card-text">${data.description}</p>
                                         <p class="card-text">ID: ${data._id}</p>
@@ -104,7 +106,7 @@ const categoryLinks = document.querySelectorAll('.category-link');
 
 // Función para manejar clics en los enlaces
 categoryLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
+    link.addEventListener('click', function (event) {
         event.preventDefault();  // Evita el comportamiento por defecto del <a>
 
         const category = link.getAttribute('data-category');  // Obtener categoría del atributo 'data-category'
@@ -136,6 +138,7 @@ async function loadProductsByCategory(category) {
                 const li = document.createElement('li');
                 li.classList.add('product-item');
                 li.innerHTML = `
+                  <img src="./img/sahumerios.jpg" alt="producto" class="card-img-top">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p>Precio: $${product.price}</p>
@@ -153,14 +156,14 @@ async function loadProductsByCategory(category) {
 
 
 
-    //------------------------------------- Script para ADD PRODUCT-------------------------------------
-    document.getElementById("addById").addEventListener("click", function (e) {
-        e.preventDefault();
-        document.getElementById("productByIdFormComplete").style.display = "block";
-        document.getElementById("cancelBtn2").addEventListener("click", function () {
-            document.getElementById("productByIdFormComplete").style.display = "none";
-        });
-    })
+//------------------------------------- Script para ADD PRODUCT-------------------------------------
+document.getElementById("addById").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("productByIdFormComplete").style.display = "block";
+    document.getElementById("cancelBtn2").addEventListener("click", function () {
+        document.getElementById("productByIdFormComplete").style.display = "none";
+    });
+})
 document.getElementById("productForm2").addEventListener("submit", function (e) {
     e.preventDefault();
     // Se toma el valor que el usuario pone en el input (id del producto buscado) y se guarda en una constante
@@ -241,36 +244,36 @@ document.getElementById("deleteById").addEventListener("click", function (e) {
         document.getElementById("deleteProductForm1").style.display = "none";
     });
 })
-    document.getElementById("deleteProductForm1").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const id = document.getElementById("idDeleteProductById").value;
+document.getElementById("deleteProductForm1").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const id = document.getElementById("idDeleteProductById").value;
 
-        fetch(`${url}/${id}`, {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+    fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Producto eliminado con exito!') {
+                alert("Producto eliminado con exito!")
+                if (window.sessionStorage.getItem('token')) {
+                    document.getElementById("loginForm").style.display = "none";
+                    document.getElementById("updateById").style.display = "block";
+                    document.getElementById("deleteById").style.display = "block";
+                    document.getElementById("addById").style.display = "block";
+                }
+            } else {
+                alert('Error al eliminar el producto.')
             }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'Producto eliminado con exito!') {
-                    alert("Producto eliminado con exito!")
-                    if(window.sessionStorage.getItem('token')){
-                        document.getElementById("loginForm").style.display = "none";
-                        document.getElementById("updateById").style.display = "block";
-                        document.getElementById("deleteById").style.display = "block";
-                        document.getElementById("addById").style.display = "block";
-                    }
-                } else {
-                    alert('Error al eliminar el producto.')
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
-    });
+});
 
 
 

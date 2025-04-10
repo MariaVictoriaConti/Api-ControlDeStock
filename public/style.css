@@ -180,6 +180,9 @@
   }
   
   @media only screen and (min-width: 480px) {
+    .index{
+      background-color: black;
+    }
     .index div {
       height: 300px;
       width: auto;
