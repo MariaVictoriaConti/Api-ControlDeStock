@@ -10,6 +10,10 @@
 - **dotenv**: para configuración de entorno.
 - **jsonwebtoken**: generación y validación de tokens para autenticación.
 - **cors**: para el manejo seguro de peticiones y solicitudes.
+- **express-rate-limit**: para limitar la cantidad de peticiones a una API.
+
+Tambien instalamos Nodemon, para un desarrollo del proyecto mas dinamico. 
+- **nodemon**: para el desarrollo del proyecto.
 
 ---
 
@@ -83,6 +87,10 @@ El directorio `/public` contiene los archivos de la interfaz de usuario (fronten
    ```bash
    npm start
    ```
+4. Durante el desarrollo del proyecto utilizamos el siguiente comando:
+   ```bash
+   npx nodemon
+   ```
 
 ---
 
@@ -118,11 +126,16 @@ Esta interfaz permite interactuar con la gestión de productos de la tienda y lo
 - **Formulario de registro de usuario**: Permite a los usuarios crear una cuenta proporcionando su correo y contraseña.
 - **Formulario de inicio de sesión**: Los usuarios pueden ingresar su correo y contraseña para autenticarse y obtener un token JWT.
 - **Interfaz de visualización de productos**: Muestra la lista de productos disponibles, permitiendo filtrar por su ID. Los usuarios pueden consultar los detalles de cada producto.
-- **Botón para agregar o actualizar productos**: Permite a los usuarios agregar o actualizar productos. Sólo visible para usuarios con permiso.
+- **Botón para agregar/actualizar o eliminar productos**: Permite a los usuarios agregar, actualizar o eliminar productos. Sólo visible para usuarios con permiso (registrados y logueados).
 
 ---
 
 ### **Notas**
 
 - En esta API Rest también se incluyeron funciones específicas para la gestión de usuarios, pero que no se encuentran vinculadas al Frontend. Recomendamos el uso de Postman para acceder a estas funciones. 
-- Para las pruebas en Postman de las funciones que requieren autenticación (`addProduct`, `updateProductById` y `deleteProductById`) es necesario utilizar la opción 'Auth Bearer Token' y poner el token en su totalidad. 
+
+- Para las pruebas en Postman de las funciones que requieren autenticación (`addProduct`, `updateProductById` y `deleteProductById`) es necesario utilizar la opción 'Auth Bearer Token' y poner el token en su totalidad (header, payload, signature).
+
+- Es importante aclarar que nuestro proyecto tiene varias cosas que consideramos podrian ser pulidas y reversionadas para una mejor experiencia del usuario, la idea es poder continuar desarrollando y mejorando el proyecto para una resultado final optimo y seguro.
+
+- Se pueden visualizar en la carpeta ./public que intentamos realizar una mejora en el frontend, realizando distintas pages para cada funcionalidad pero aun no hemos podido lograrlo. Trabajaremos en ello en el futuro. Tambien pretendemos que las cards de los productos muestren la imagen correspondiente a cada producto, ya que en este momento solo se muestra una imagen por defecto. La idea es modificar el modelProduct para que cada vez que se agregue un producto tambien se pueda agregar la imagen correspondiente.
