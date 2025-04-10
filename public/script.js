@@ -141,6 +141,7 @@ async function loadProductsByCategory(category) {
                   <img src="./img/sahumerios.jpg" alt="producto" class="card-img-top">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
+                    <p>Id: ${product._id}</p>
                     <p>Precio: $${product.price}</p>
                     <p>Cantidad: ${product.quantity}</p>
                 `;
