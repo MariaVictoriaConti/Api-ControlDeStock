@@ -1,7 +1,7 @@
 //Controller de usuarios
 
 const User = require('../Models/userModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secretKey = process.env.SECRET_KEY || "secretKey123"
