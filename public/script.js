@@ -72,7 +72,8 @@ document.getElementById("productForm1").addEventListener("submit", function (e) 
         .then(data => {
             // Info del producto que retorna lo renderiza en el html
             // Si no encontró ningun producto sale un alerta. 
-            if (data.name === undefined) {
+            console.log(data)
+            if (data.message === 'Producto no encontrado.') {
                 alert('Producto no encontrado')
             } else {
                 let html = `<div class="col-md-4 cardTodas">
@@ -214,7 +215,7 @@ document.getElementById("productFormUpdate").addEventListener("submit", function
     const price = document.getElementById("priceUpdateProductById").value;
     const quantity = document.getElementById("quantityUpdateProductById").value;
     const disponibility = document.getElementById("disponibilityUpdateProductById").value;
-
+    
     // Enviamos la solicitud de registro al back
     fetch(`${url}/${id}`, {
         method: 'PUT',
@@ -266,6 +267,8 @@ document.getElementById("deleteProductForm1").addEventListener("submit", functio
                     document.getElementById("deleteById").style.display = "block";
                     document.getElementById("addById").style.display = "block";
                 }
+            } else if (data.message === 'Producto inexistente.'){
+                alert('El producto no existe.')
             } else {
                 alert('Error al eliminar el producto.')
             }
@@ -303,8 +306,10 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
             if (data.message === 'Usuario registrado con exito.') {
                 alert("Usuario registrado con exito!")
                 document.getElementById("registerForm").style.display = "none";
-            } else {
+            } else if (data.status === 400){
                 alert("El usuario ya existe.")
+            } else if (data.message === 'Campos incompletos.') {
+                alert('Campos incompletos.')
             }
         })
         .catch(error => {

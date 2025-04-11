@@ -12,7 +12,7 @@ const registerUser = async (req, res) => {
         const { email, password } = req.body
         if (!email || !password) {
             console.log('Campos incompletos.');
-            return res.status(400).send('Campos incompletos.')
+            return res.status(400).json({message: 'Campos incompletos.'})
         }
         const userExist = await User.findOne({'email': email})
         if (!userExist) {
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
             return res.status(201).json({message: 'Usuario registrado con exito.'})
         } else {
             console.log('El usuario ya existe');
-            return res.status(400).send('El usuario ya existe.')
+            return res.status(400).json({message: 'El usuario ya existe.'})
         }
     } catch (error) {
         console.error('Ocurrio un error al registar usuario', error)
@@ -75,7 +75,8 @@ const getUserById = async (req, res) => {
         const user = await User.findById(userId)
         res.json(user)
     } catch (error) {
-        console.error('No se pudo encontrar al usuario.', error)
+        res.status(404).json({message: 'No se pudo encontrar al usuario.'})
+        console.error('No se pudo encontrar al usuario.')
     }
 }
 

@@ -17,8 +17,12 @@ const getProductById = async (req, res) => {
     try {
         const productId = req.params.id;
         const product = await Product.findById(productId)
+        if (!product) {
+            return res.status(404).json({message: 'Producto no encontrado.'})
+        }
         res.json(product)
     } catch (error) {
+        res.status(404).json({message: 'Producto no encontrado.'})
         console.error('No se pudo obtener el producto por ID.', error)
     }
 }
@@ -49,7 +53,10 @@ const updateProductById = async (req, res) => {
 //Funcion para eliminar un producto por ID - FUNCIONA
 const deleteProductById  = async (req, res) => {
     try {
-        await Product.findByIdAndDelete(req.params.id)
+        const product = await Product.findByIdAndDelete(req.params.id)
+        if (!product) {
+            return res.status(404).json({message: 'Producto inexistente.'})
+        }
         return res.json({message: 'Producto eliminado con exito!'})
     } catch (error) {
         console.error('Error al eliminar el producto.')
