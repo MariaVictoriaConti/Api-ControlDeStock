@@ -6,12 +6,12 @@ const mongoose = require('mongoose');
 // Modulo dotenv
 require('dotenv').config();
 
-// Funcion para concetar con Atlas
+// Funcion para conectar con Atlas
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
+            // useNewUrlParser: true,
+            // useUnifiedTopology: true
         })
         console.log('Conectado con MongoDB.');
     } catch (error) {
