@@ -17,10 +17,10 @@ const app = express()
 app.use(express.json())
 app.use(cors()); // Habilita CORS para todas las rutas
 
-app.use('/', routes);
-
 // Servir los archivos estaticos en el front
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
 
 app.get('/', (req, res) => { // aca cambie * y './public/index.html'
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
