@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path')
 const routes = require('./backend/Routes/routes');
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT;
 
 // Conectamos a la base de datos
 const connectDB = require('./backend/DataBase/dataBase')
@@ -26,6 +26,6 @@ app.get('/', (req, res) => { // aca cambie * y './public/index.html'
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port,  () => {
     console.log(`Servidor corriendo en: http://localhost:${port}`);
 })
