@@ -3,7 +3,7 @@
 
 const PORT = 5500;
 // Función para cargar productos desde la API de MongoDB
-const url = `http://localhost:${PORT}`; //'https://controldestock.onrender.com'
+const url = '/' 
 
 
 
@@ -17,7 +17,7 @@ document.getElementById("Data").addEventListener("click", function () {
         resultDiv.style.display = "none";
     } else {
         // Si las tarjetas están ocultas, las mostramos
-        fetch(`${url}/allProducts`)
+        fetch(`${url}allProducts`)
             .then(response => response.json())
             // La info que devuelve el controlador (lista de productos) llega como 'data'
             .then(data => {
@@ -62,7 +62,7 @@ document.getElementById("productForm1").addEventListener("submit", function (e) 
     // Se toma el valor que el usuario pone en el input (id del producto buscado) y se guarda en una constante
     const id = document.getElementById("idProductById").value;
     // El id se pasa como el parametro al endpoint de peticion al back
-    fetch(`${url}/${id}`, {
+    fetch(`${url}${id}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -121,7 +121,7 @@ categoryLinks.forEach(link => {
 async function loadProductsByCategory(category) {
     try {
         // Hacer la solicitud al backend para obtener los productos
-        const response = await fetch(`${url}/products/${category}`);
+        const response = await fetch(`${url}products/${category}`);
 
         const products = await response.json();  // Convertir la respuesta a JSON
 
@@ -139,7 +139,7 @@ async function loadProductsByCategory(category) {
                 const li = document.createElement('li');
                 li.classList.add('product-item');
                 li.innerHTML = `
-                  <img src="./img/sahumerios.jpg" alt="producto" class="card-img-top">
+                <img src="./img/sahumerios.jpg" alt="producto" class="card-img-top">
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p>Id: ${product._id}</p>
@@ -176,7 +176,7 @@ document.getElementById("productForm2").addEventListener("submit", function (e) 
     const disponibility = document.getElementById("disponibilityProductById").value;
 
     // Enviamos la solicitud de registro al back
-    fetch(`${url}/addProduct`, {
+    fetch(`${url}addProduct`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -217,7 +217,7 @@ document.getElementById("productFormUpdate").addEventListener("submit", function
     const disponibility = document.getElementById("disponibilityUpdateProductById").value;
     
     // Enviamos la solicitud de registro al back
-    fetch(`${url}/${id}`, {
+    fetch(`${url}${id}`, {
         method: 'PUT',
         headers: {
             "Content-Type": "application/json",
@@ -250,7 +250,7 @@ document.getElementById("deleteProductForm1").addEventListener("submit", functio
     e.preventDefault();
     const id = document.getElementById("idDeleteProductById").value;
 
-    fetch(`${url}/${id}`, {
+    fetch(`${url}${id}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
@@ -294,7 +294,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     const password = document.getElementById("floatingInputPasswordReg").value;
 
     // Enviamos la solicitud de registro al back
-    fetch(`${url}/register`, {
+    fetch(`${url}register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -332,7 +332,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     const password = document.getElementById("floatingTelefono").value;
 
     // Enviamos la solicitud de registro al back
-    fetch(`${url}/login`, {
+    fetch(`${url}login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
