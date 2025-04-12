@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path')
 const routes = require('./backend/Routes/routes');
 
+const port = process.env.PORT || 10000;
 
 // Conectamos a la base de datos
 const connectDB = require('./backend/DataBase/dataBase')
@@ -21,10 +22,10 @@ app.use('/', routes);
 // Servir los archivos estaticos en el front
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { // aca cambie * y './public/index.html'
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
-app.listen(process.env.PORT, () => {
-    console.log(`Servidor corriendo en: http://localhost:${process.env.PORT}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Servidor corriendo en: http://localhost:${port}`);
 })

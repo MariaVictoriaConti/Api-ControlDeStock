@@ -3,8 +3,7 @@
 
 const PORT = 5500;
 // Función para cargar productos desde la API de MongoDB
-const url = 'https://controldestock.onrender.com'
-//`http://localhost:${PORT}`;
+const url = `http://localhost:${PORT}`; //'https://controldestock.onrender.com'
 
 
 
