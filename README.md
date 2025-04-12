@@ -1,4 +1,5 @@
 # 🌸 AROMANZA - Tienda de aromas, sahumerios y difusores 🌸
+https://controldestock.onrender.com/
 
 **Aromanza** se especializa en la gestión de ventas de sahumerios artesanales, difusores ambientales y esencias seleccionadas para equilibrar tus espacios y acompañarte en tu bienestar diario. Esta API RESTful fue desarrollada para gestionar eficientemente el stock de productos disponibles en la tienda. Además, permite llevar un registro ordenado de entradas y salidas del inventario, facilitando la gestión del almacén y el seguimiento de productos.
 
